@@ -1,3 +1,7 @@
+## Version 2.3.0
+
+- Added pagination
+
 ## Version 2.2.4
 
 - Set `display: none` on filtered out items
