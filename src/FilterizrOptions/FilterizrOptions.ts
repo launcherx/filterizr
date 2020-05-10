@@ -140,21 +140,21 @@ export default class FilterizrOptions {
       checkOptionForErrors('pagination.pageSize', options.pagination.pageSize, 'number');
       checkOptionForErrors('pagination.currentPage', options.pagination.currentPage, 'number');
 
-			if (options.pagination.hasOwnProperty('styles')) {
-				checkOptionForErrors('pagination.styles', options.pagination.styles, 'object');
+      if (options.pagination.hasOwnProperty('styles')) {
+        checkOptionForErrors('pagination.styles', options.pagination.styles, 'object');
         if (options.pagination.styles.hasOwnProperty('wrapperClass')) {
-					checkOptionForErrors('pagination.styles.wrapperClass', options.pagination.styles.wrapperClass, 'string');
+          checkOptionForErrors('pagination.styles.wrapperClass', options.pagination.styles.wrapperClass, 'string');
         }
-				if (options.pagination.styles.hasOwnProperty('listClass')) {
-					checkOptionForErrors('pagination.styles.listClass', options.pagination.styles.listClass, 'string');
-				}
-				if (options.pagination.styles.hasOwnProperty('itemClass')) {
-					checkOptionForErrors('pagination.styles.itemClass', options.pagination.styles.itemClass, 'string');
-				}
-				if (options.pagination.styles.hasOwnProperty('linkClass')) {
-					checkOptionForErrors('pagination.styles.linkClass', options.pagination.styles.linkClass, 'string');
-				}
-			}
+        if (options.pagination.styles.hasOwnProperty('listClass')) {
+          checkOptionForErrors('pagination.styles.listClass', options.pagination.styles.listClass, 'string');
+        }
+        if (options.pagination.styles.hasOwnProperty('itemClass')) {
+          checkOptionForErrors('pagination.styles.itemClass', options.pagination.styles.itemClass, 'string');
+        }
+        if (options.pagination.styles.hasOwnProperty('linkClass')) {
+          checkOptionForErrors('pagination.styles.linkClass', options.pagination.styles.linkClass, 'string');
+        }
+      }
 
       if(options.pagination.pageSize < 0) {options.pagination.pageSize = 0}
       if(options.pagination.currentPage < 0) {options.pagination.currentPage = 0}

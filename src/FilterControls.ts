@@ -60,9 +60,9 @@ export default class FilterControls implements Destructible {
     );
 
     this.paginationControls.on('click', (evt): void => {
-        const ctrl: Element = evt.currentTarget as Element;
-        const page: number = parseInt(ctrl.getAttribute('data-page'));
-			  this.filterizr.gotoPage(page - 1);
+      const ctrl: Element = evt.currentTarget as Element;
+      const page: number = parseInt(ctrl.getAttribute('data-page'));
+      this.filterizr.gotoPage(page - 1);
     });
   }
 
