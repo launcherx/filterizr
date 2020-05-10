@@ -1,7 +1,7 @@
 import { FILTERIZR_STATE } from '../config';
 import { Filter } from '../types';
 import { RawOptions, Destructible, Dimensions } from '../types/interfaces';
-import { getHTMLElement, debounce } from '../utils';
+import { getHTMLElement, debounce, generatePageRange } from '../utils';
 import EventReceiver from '../EventReceiver';
 import FilterizrOptions, { defaultOptions } from '../FilterizrOptions';
 import FilterControls from '../FilterControls';
@@ -62,6 +62,21 @@ export default class Filterizr implements Destructible {
     if (isSpinnerEnabled) {
       this.spinner = new Spinner(this.filterContainer, this.options);
     }
+
+		const pagination = this.options.get().pagination;
+
+    if (pagination) {
+			const filterContainer = document.getElementsByClassName(this.filterContainer.node.className)[0];
+			const pagerWrapper = document.createElement('div');
+			pagerWrapper.setAttribute('id', 'pager_wrapper');
+
+			const styles = pagination.styles;
+			if (styles && styles.hasOwnProperty('wrapperClass')) {
+				pagerWrapper.setAttribute('class', styles.wrapperClass);
+			}
+
+			filterContainer.parentNode.insertBefore(pagerWrapper, filterContainer.nextSibling);
+		}
 
     this.initialize();
   }
@@ -251,6 +266,62 @@ export default class Filterizr implements Destructible {
     this.render();
   }
 
+  private buildPagination(): void {
+  	const { filterItems, options } = this;
+		const { controlsSelector } = options;
+		const { styles } = options.get().pagination;
+
+		const nbrItem = filterItems.getFiltered(options.filter, options.searchTerm, null).length;
+		const lastPage = Math.ceil(nbrItem / options.get().pagination.pageSize);
+
+		const pageWrapper = document.getElementById('pager_wrapper');
+		pageWrapper.innerHTML = '';
+
+		if (lastPage > 1) {
+			const currentPage = options.get().pagination.currentPage;
+			const pagerItems = generatePageRange(currentPage, lastPage);
+			const list = document.createElement('ul');
+
+			if (styles && styles.hasOwnProperty('listClass')) {
+				list.classList.add(styles.listClass);
+			}
+
+			/* Generate pagination list */
+			pagerItems.forEach(page => {
+				const item = document.createElement('li');
+				const link = document.createElement('a');
+
+				if (styles && styles.hasOwnProperty('itemClass')) {
+					item.classList.add(styles.itemClass);
+				}
+
+				if (page !== '...') {
+					link.setAttribute('class', controlsSelector.replace(/\./g, ''));
+					link.setAttribute('href', 'javascript:void(0);');
+					link.setAttribute('data-page', page.toString());
+				}
+
+				if (styles && styles.hasOwnProperty('linkClass')) {
+					link.classList.add(styles.linkClass);
+				}
+
+				if (page - 1 === currentPage) {
+					link.classList.add('active');
+					item.classList.add('active');
+				}
+
+				link.appendChild(document.createTextNode(page.toString()));
+
+				item.appendChild(link);
+				list.appendChild(item);
+			});
+
+			pageWrapper.appendChild(list);
+		}
+
+		this.filterControls.updatePaginationEvent()
+  }
+
   private render(): void {
     const { filterContainer, filterItems, options } = this;
     const itemsToFilterIn = filterItems.getFiltered(options.filter, options.searchTerm, options.getPageRange());
@@ -271,6 +342,11 @@ export default class Filterizr implements Destructible {
     itemsToFilterIn.forEach((filterItem, index): void => {
       filterItem.filterIn(itemsPositions[index]);
     });
+
+    /* Build pager only if pagination is set */
+    if (options.get().pagination) {
+			this.buildPagination();
+		}
   }
 
   /**

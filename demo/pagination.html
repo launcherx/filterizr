@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Filterizr Demo - With jQuery in Bundle</title>
+
+    <!-- Bootstrap -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+
+      <!-- Same size layout -->
+      <div class="row push-down">
+        <h3>Same size layout</h3>
+        <div class="color-controls-1">
+          <ul class="simplefilter">
+            <li class="color-controls-1 active" data-filter="all">All</li>
+            <li class="color-controls-1" data-filter="red">Red</li>
+            <li class="color-controls-1" data-filter="yellow">Yellow</li>
+            <li class="color-controls-1" data-filter="green">Green</li>
+            <li class="color-controls-1" data-filter="purple">Purple</li>
+            <li class="color-controls-1" data-filter="blue">Blue</li>
+          </ul>
+        </div>
+        <div class="color-container-1 col-xs-12">
+          <div class="filtr-item block red col-sm-3" data-category="red">
+            <span class="text">01</span>
+          </div>
+          <div class="filtr-item block blue col-sm-3" data-category="blue">
+            <span class="text">02</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block purple col-sm-3" data-category="purple">
+            <span class="text">04</span>
+          </div>
+          <div class="filtr-item block purple col-sm-3" data-category="purple">
+            <span class="text">05</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">06</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">07</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">08</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">09</span>
+          </div>
+          <div class="filtr-item block purple col-sm-3" data-category="purple">
+            <span class="text">10</span>
+          </div>
+          <div class="filtr-item block red col-sm-3" data-category="red">
+            <span class="text">11</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">06</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">06</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">06</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">06</span>
+          </div>
+          <div class="filtr-item block yellow col-sm-3" data-category="yellow">
+            <span class="text">06</span>
+          </div>
+          <div class="filtr-item block blue col-sm-3" data-category="blue">
+            <span class="text">12</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+          <div class="filtr-item block green col-sm-3" data-category="green">
+            <span class="text">03</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"
+  ></script>
+  <script type="text/javascript" src="filterizr.min.js"></script>
+  <script type="text/javascript">
+      new window.Filterizr('.color-container-1', {
+          controlsSelector: '.color-controls-1',
+          gutterPixels: 10,
+          pagination : {
+              pageSize : 4,
+              styles: {
+              	wrapperClass: 'row col-md-12 d-flex justify-content-center mt-4',
+                listClass: 'pagination',
+                itemClass: 'page-item',
+                linkClass: 'page-link'
+              }
+          }
+      });
+  </script>
+</html>

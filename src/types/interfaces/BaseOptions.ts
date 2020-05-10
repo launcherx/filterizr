@@ -24,4 +24,10 @@ export interface BaseOptions {
 export interface PaginationOptions {
   pageSize : number;
   currentPage : number;
+  styles?: {
+    wrapperClass?: string;
+    listClass?: string;
+    itemClass?: string;
+    linkClass?: string;
+  }
 }
