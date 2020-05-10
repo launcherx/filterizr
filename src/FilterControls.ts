@@ -12,6 +12,7 @@ export default class FilterControls implements Destructible {
   private shuffleControls: EventReceiver;
   private sortAscControls: EventReceiver;
   private sortDescControls: EventReceiver;
+  private paginationControls: EventReceiver;
 
   /**
    * @param filterizr keep a ref to the Filterizr object to control actions
@@ -50,6 +51,19 @@ export default class FilterControls implements Destructible {
     this.searchControls.destroy();
     this.sortAscControls.destroy();
     this.sortDescControls.destroy();
+    this.paginationControls.destroy();
+  }
+
+  public updatePaginationEvent(): void {
+    this.paginationControls = new EventReceiver(
+        document.querySelectorAll(`${this.selector}[data-page]`)
+    );
+
+    this.paginationControls.on('click', (evt): void => {
+      const ctrl: Element = evt.currentTarget as Element;
+      const page: number = parseInt(ctrl.getAttribute('data-page'));
+      this.filterizr.gotoPage(page - 1);
+    });
   }
 
   private initialize(): void {
@@ -59,6 +73,7 @@ export default class FilterControls implements Destructible {
     this.filterControls.on('click', (evt): void => {
       const ctrl: Element = evt.currentTarget as Element;
       const targetFilter: string = ctrl.getAttribute('data-filter');
+      filterizr.gotoPage(0);
       filterizr.filter(targetFilter);
     });
     this.multiFilterControls.on('click', (evt): void => {

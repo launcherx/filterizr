@@ -12,3 +12,4 @@ export { noop } from './noop';
 export { setStyles } from './setStyles';
 export { shuffle } from './shuffle';
 export { sortBy } from './sortBy';
+export { generatePageRange } from './generatePageRange';
