@@ -115,20 +115,30 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"
   ></script>
-  <script type="text/javascript" src="filterizr.min.js"></script>
+  <script type="text/javascript" src="../dist/jquery.filterizr.min.js"></script>
+  <!--suppress JSUnusedGlobalSymbols, JSUnresolvedVariable -->
   <script type="text/javascript">
-      new window.Filterizr('.color-container-1', {
-          controlsSelector: '.color-controls-1',
-          gutterPixels: 10,
-          pagination : {
-              pageSize : 4,
-              styles: {
-                wrapperClass: 'row col-md-12 d-flex justify-content-center mt-4',
-                listClass: 'pagination class1',
-                itemClass: 'page-item class2',
-                linkClass: 'page-link class3'
-              }
-          }
-      });
+    const filterizrInstance = $('.color-container-1').filterizr({
+        controlsSelector: '.color-controls-1',
+        gutterPixels: 10,
+        pagination : {
+            pageSize : 4,
+            styles: {
+              wrapperClass: 'row col-md-12 d-flex justify-content-center mt-4',
+              listClass: 'pagination',
+              itemClass: 'page-item',
+              linkClass: 'page-link'
+            }
+        }
+    });
+
+    filterizrInstance.filterizr('setOptions', {
+        callbacks: {
+            onFilteringStart: function(e) {
+              $('.simplefilter').find('li.active').removeClass('active');
+                $(e.explicitOriginalTarget).addClass('active');
+            }
+        }
+    });
   </script>
 </html>

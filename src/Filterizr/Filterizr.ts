@@ -283,7 +283,7 @@ export default class Filterizr implements Destructible {
       const list = document.createElement('ul');
 
       if (styles && styles.hasOwnProperty('listClass')) {
-        list.classList.add(styles.listClass);
+        list.classList.add(...styles.listClass.split(' ').filter(n => n));
       }
 
       /* Generate pagination list */
@@ -292,7 +292,7 @@ export default class Filterizr implements Destructible {
         const link = document.createElement('a');
 
         if (styles && styles.hasOwnProperty('itemClass')) {
-          item.classList.add(styles.itemClass);
+          item.classList.add(...styles.itemClass.split(' ').filter(n => n));
         }
 
         if (page !== '...') {
@@ -302,7 +302,7 @@ export default class Filterizr implements Destructible {
         }
 
         if (styles && styles.hasOwnProperty('linkClass')) {
-          link.classList.add(styles.linkClass);
+          link.classList.add(...styles.linkClass.split(' ').filter(n => n));
         }
 
         if (page - 1 === currentPage) {
