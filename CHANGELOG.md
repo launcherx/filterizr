@@ -1,3 +1,7 @@
+## Version 2.3.1
+
+- Fixed bug pagination bug when multiple classes are specified
+
 ## Version 2.3.0
 
 - Added pagination
